@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { type BreadcrumbItem } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
-import { Edit, Download, Upload } from 'lucide-vue-next';
+import { Edit, Download, /* Upload */ } from 'lucide-vue-next';
 
 interface PurchaseOrder {
     id: number;

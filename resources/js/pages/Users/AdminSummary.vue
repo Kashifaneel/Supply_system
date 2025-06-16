@@ -12,6 +12,7 @@ interface Props {
     regularUserCount?: number;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [

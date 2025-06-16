@@ -3,7 +3,7 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Edit, Trash2 } from 'lucide-vue-next';
+import { Plus, Edit, /* Trash2 */ } from 'lucide-vue-next';
 import { type BreadcrumbItem } from '@/types';
 
 interface User {
@@ -18,6 +18,7 @@ interface Props {
     users: User[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const props = defineProps<Props>();
 
 const breadcrumbs: BreadcrumbItem[] = [

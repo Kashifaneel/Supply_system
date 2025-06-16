@@ -15,6 +15,8 @@ const breadcrumbs: BreadcrumbItem[] = [
     { title: 'Create', href: '/purchase-orders/create' },
 ];
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/*
 interface FormErrors {
     po_number?: string;
     po_date?: string;
@@ -28,6 +30,8 @@ interface FormErrors {
     [key: `items.${number}.price`]: string;
     [key: `items.${number}.quantity`]: string;
 }
+*/
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 interface Item {
     name: string;
@@ -38,6 +42,8 @@ interface Item {
     exp_date: string;
 }
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/*
 interface FormData {
     po_number: string;
     po_date: string;
@@ -48,6 +54,8 @@ interface FormData {
     institution_address: string;
     items: Item[];
 }
+*/
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 const form = useForm({
     po_number: '',

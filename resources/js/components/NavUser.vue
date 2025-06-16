@@ -2,7 +2,7 @@
 import UserInfo from '@/components/UserInfo.vue';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { SidebarMenu, SidebarMenuItem } from '@/components/ui/sidebar';
+import { /* SidebarMenu, SidebarMenuItem */ } from '@/components/ui/sidebar';
 import { type User } from '@/types';
 import { usePage } from '@inertiajs/vue3';
 import { ChevronsUpDown } from 'lucide-vue-next';
@@ -12,7 +12,8 @@ const page = usePage();
 const user = page.props.auth.user as User;
 // Avoid using useSidebar to prevent context issues
 const isMobile = false;
-const state = 'expanded';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+// const state = 'expanded';
 </script>
 
 <template>

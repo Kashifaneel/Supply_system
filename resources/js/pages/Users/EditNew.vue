@@ -13,7 +13,7 @@
             <div class="grid grid-cols-1 gap-6">
               <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <Input
+                <CustomInput
                   id="name"
                   type="text"
                   class="mt-1 block w-full"
@@ -25,7 +25,7 @@
 
               <div>
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <Input
+                <CustomInput
                   id="email"
                   type="email"
                   class="mt-1 block w-full"
@@ -49,20 +49,20 @@
               </div>
 
               <div class="flex items-center justify-end">
-                <Button
+                <CustomButton
                   type="button"
                   class="mr-2 bg-gray-300 text-gray-700 hover:bg-gray-400"
                   @click="$inertia.visit(route('users.index'))"
                 >
                   Cancel
-                </Button>
-                <Button
+                </CustomButton>
+                <CustomButton
                   type="submit"
                   class="bg-blue-600 text-white hover:bg-blue-700"
                   :disabled="form.processing"
                 >
                   Save
-                </Button>
+                </CustomButton>
               </div>
             </div>
           </form>
@@ -72,17 +72,17 @@
   </AppLayout>
 </template>
 
-<script>
+<script lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button as CustomButton } from '@/components/ui/button';
+import { Input as CustomInput } from '@/components/ui/input';
 import { useForm } from '@inertiajs/inertia-vue3';
 
 export default {
   components: {
     AppLayout,
-    Button,
-    Input,
+    CustomButton,
+    CustomInput,
   },
 
   props: {

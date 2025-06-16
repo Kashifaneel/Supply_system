@@ -7,7 +7,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { defineProps } from 'vue';
 import AppSidebar from '@/components/AppSidebar.vue';
 

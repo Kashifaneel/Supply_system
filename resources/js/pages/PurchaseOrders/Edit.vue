@@ -84,7 +84,7 @@
                 <input
                   id="po_image"
                   type="file"
-                  @input="form.po_image = $event.target.files[0]"
+                  @input="form.po_image = ($event.target as HTMLInputElement).files?.[0] ?? null"
                   accept="image/*"
                   class="mt-1 block w-full text-sm text-gray-500
                     file:mr-4 file:py-2 file:px-4
@@ -222,7 +222,7 @@
   </app-layout>
 </template>
 
-<script>
+<script lang="ts">
 import AppLayout from '@/layouts/AppLayout.vue';
 import { useForm } from '@inertiajs/vue3';
 import { computed } from 'vue';
@@ -233,7 +233,10 @@ export default {
   },
 
   props: {
-    purchaseOrder: Object,
+    purchaseOrder: {
+      type: Object,
+      required: true,
+    },
   },
   setup(props) {
     const form = useForm({
@@ -243,7 +246,7 @@ export default {
       institution_email: props.purchaseOrder.institution_email,
       institution_phone: props.purchaseOrder.institution_phone,
       institution_address: props.purchaseOrder.institution_address,
-      items: props.purchaseOrder.items ? props.purchaseOrder.items.map(item => ({
+      items: props.purchaseOrder.items ? props.purchaseOrder.items.map((item: { id: any; name: any; price: number; quantity: number; batch_no: any; mfg_date: any; exp_date: any; }) => ({
         id: item.id,
         name: item.name,
         price: item.price,
@@ -252,12 +255,13 @@ export default {
         mfg_date: item.mfg_date,
         exp_date: item.exp_date,
         total_amount: item.price * item.quantity
-      })) : []
+      })) : [],
+      po_image: null as File | null
     });
 
     const submit = () => {
       // Ensure all items have their total_amount calculated before submitting
-      form.items.forEach(item => {
+      form.items.forEach((item: { price: number; quantity: number; total_amount: number }) => {
         item.total_amount = item.price * item.quantity;
       });
       form.put(route('purchase-orders.update', props.purchaseOrder.id));
@@ -279,15 +283,26 @@ export default {
       });
     };
 
-    const removeItem = (index) => {
+    const removeItem = (index: number) => {
       form.items.splice(index, 1);
     };
 
-    const updateItemTotal = (item) => {
+    interface PurchaseOrderItem {
+      id?: number;
+      name: string;
+      price: number;
+      quantity: number;
+      batch_no: string;
+      mfg_date: string | null;
+      exp_date: string | null;
+      total_amount: number;
+    }
+
+    const updateItemTotal = (item: PurchaseOrderItem) => {
       item.total_amount = item.price * item.quantity;
     };    const totalAmount = computed(() => {
-      const total = form.items.reduce((sum, item) => {
-        const itemTotal = parseFloat(item.total_amount) || 0;
+      const total = form.items.reduce((sum: number, item: { total_amount: number }) => {
+        const itemTotal = parseFloat(item.total_amount as any) || 0;
         return sum + itemTotal;
       }, 0);
       return Number.isFinite(total) ? total : 0;

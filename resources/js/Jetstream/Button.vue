@@ -11,11 +11,11 @@
   </button>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   props: {
     type: {
-      type: String,
+      type: String as () => 'button' | 'submit' | 'reset',
       default: 'button',
     },
     disabled: {
